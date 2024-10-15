@@ -9,7 +9,7 @@ import CalendarDaysIcon from '@heroicons/react/24/solid/CalendarDaysIcon'
 
 export const items = [
     {
-        title: 'Dashboard',
+        title: 'Vista geral',
         path: '/',
         icon: (
             <SvgIcon fontSize="small">
@@ -18,7 +18,7 @@ export const items = [
         )
     },
     {
-        title: 'Manage Staffs',
+        title: 'Gerir Staffs',
         path: '/workouts',
         icon: (
             <SvgIcon fontSize="small">
@@ -27,7 +27,7 @@ export const items = [
         )
     },
     {
-        title: 'Histórico de treinos',
+        title: 'Histórico de reservas',
         path: '/workouts-history',
         icon: (
             <SvgIcon fontSize="small">
