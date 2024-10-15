@@ -45,7 +45,7 @@ export const items = [
         )
     },
     {
-        title: 'Menús',
+        title: 'Menu do Restaurante',
         path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">
