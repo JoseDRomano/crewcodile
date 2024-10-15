@@ -34,9 +34,9 @@ const Stats = () => (
                             }}
                         >
                             <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Data de adesão</Typography>
+                            <Typography variant="body2">Data de abertura do restaurante</Typography>
                             <Box ml={10}> {/* Adding space here */}
-                                <Typography variant="subtitle2" fontWeight="bold">18-11-2023</Typography>
+                                <Typography variant="subtitle2" fontWeight="bold">18-10-2022</Typography>
                             </Box>
                         </Box>
                     </Grid>
@@ -54,9 +54,9 @@ const Stats = () => (
                             }}
                         >
                             <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Número treinos</Typography>
+                            <Typography variant="body2">Número total de clientes</Typography>
                             <Box ml={10}> {/* Adding space here */}
-                                <Typography variant="subtitle2" fontWeight="bold">222</Typography>
+                                <Typography variant="subtitle2" fontWeight="bold">39335</Typography>
                             </Box>
                         </Box>
                     </Grid>
@@ -74,9 +74,9 @@ const Stats = () => (
                             }}
                         >
                             <InfoIcon sx={{fontSize: 18, mr: 1}}/>
-                            <Typography variant="body2">Alunos atualmente</Typography>
+                            <Typography variant="body2">Reservas futuras</Typography>
                             <Box ml={10}> {/* Adding space here */}
-                                <Typography variant="subtitle2" fontWeight="bold">23</Typography>
+                                <Typography variant="subtitle2" fontWeight="bold">43</Typography>
                             </Box>
                         </Box>
                     </Grid>
@@ -86,8 +86,9 @@ const Stats = () => (
                         <Box sx={{width: '100%', mt: 3,}}>
                             <OverviewDB
                                 chartSeries={[
-                                    {name: "This year", data: [18, 16, 15, 15, 13, 14, 10, 5, 25, 22, 22, 20]},
-                                    {name: "Last year", data: [12, 11, 14, 6, 12, 9, 9, 11, 4, 12, 13, 23]},
+                                    {name: "This year", data: [2191, 1421, 2355, 2512, 1319, 3866, 5040, 2636, 1200, 1201, 1202, 1227]},
+                                    {name: "Last year", data: [2879, 1697, 1509, 1517, 1449, 1527, 1200, 1201, 1202, 1203, 1204, 1301]}
+                                    
                                 ]}
                                 sx={{height: "100%"}}
                             />
@@ -98,7 +99,7 @@ const Stats = () => (
                     <Grid item xs={12} lg={6} sx={{display: 'flex', justifyContent: 'center'}}>
                         <Box sx={{width: '100%', mt: 3}}>
                             <OverviewTraffic
-                                chartSeries={[80, 5, 15]}
+                                chartSeries={[82, 5, 13]}
                                 labels={['Positivo', 'Neutro', 'Negativo']}
                                 sx={{height: '100%'}}
                             />
