@@ -121,7 +121,7 @@ const WorkoutHistoryPage = () => {
         <Container maxWidth={false}>
           <Stack direction="row" justifyContent="space-between" mb={3}>
             <Typography color="textPrimary" variant="h4">
-              Histórico de treinos
+              Histórico de reservas
             </Typography>
           </Stack>
           <br />
@@ -133,12 +133,12 @@ const WorkoutHistoryPage = () => {
             }}
             onClick={() => {
                 dialog.setDialogContent({
-                    title: "Adicionar um novo treino ao historico",
+                    title: "Adicionar um nova reserva",
                     type: "createwkh",
                 })
             }}
           >
-            Adicionar registo de treino
+            Adicionar reserva
           </Button>
         </Container>
         <br />
