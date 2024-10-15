@@ -115,7 +115,7 @@ export const OverviewDB = (props) => {
                         Refresh
                     </Button>
                 )}
-                title="Alunos"
+                title="Número de reservas"
             />
             <CardContent>
                 <Chart
