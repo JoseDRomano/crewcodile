@@ -80,7 +80,7 @@ const Calendar = () => {
                 {/* CALENDAR SIDEBAR */}
                 <Box flex="1 1 20%" backgroundColor="white" p="10px" borderRadius="4px">
                     <Typography variant="h5">
-                        Marcações
+                        Reservas
                     </Typography>
                     <List>
                         {currentEvents.map((event) => (
