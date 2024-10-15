@@ -105,7 +105,7 @@ export const AddWorkoutHistoryDialog = () => {
 
   return (
     <FormDialog>
-      <DialogTitle>Adicionar um novo registo de treino</DialogTitle>
+      <DialogTitle>Adicionar uma nova reserva</DialogTitle>
       <DialogContent>
         <form onSubmit={formik.handleSubmit}>
           <Stack spacing={2}>
