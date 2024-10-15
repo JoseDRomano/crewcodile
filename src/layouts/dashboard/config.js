@@ -18,7 +18,7 @@ export const items = [
         )
     },
     {
-        title: 'Planos de treino',
+        title: 'Manage Staffs',
         path: '/workouts',
         icon: (
             <SvgIcon fontSize="small">
@@ -36,7 +36,7 @@ export const items = [
         )
     },
     {
-        title: 'Alunos',
+        title: 'Staff',
         path: '/students',
         icon: (
             <SvgIcon fontSize="small">
@@ -45,7 +45,7 @@ export const items = [
         )
     },
     {
-        title: 'Bibilioteca de exercícios',
+        title: 'Menús',
         path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">
