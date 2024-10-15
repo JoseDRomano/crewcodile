@@ -40,7 +40,7 @@ const Page = () => {
                         <Grid item xs={12} sm={6} lg={2.5}>
                             <OverviewWidget
                                 icon="1"
-                                text={"Alunos inscritos"}
+                                text={"Total de reservas"}
                                 difference={5}
                                 differenceDay={"mês"}
                                 positive={true}
@@ -48,7 +48,7 @@ const Page = () => {
                                     height: "100%",
                                     background: `linear-gradient(to bottom, ${dark_green.main}, black)`,
                                 }}
-                                value={students.length}
+                                value={students.length} //TODO
                             />
                         </Grid>
                         <Grid item xs={12} sm={6} lg={1}>
@@ -66,34 +66,34 @@ const Page = () => {
                         <Grid item xs={12} sm={6} lg={2.3}>
                             <OverviewWidget
                                 icon="2"
-                                text={"Treinos hoje"}
+                                text={"Reservas hoje"}
                                 differenceDay={"dia"}
                                 difference={6}
                                 positive={true}
                                 sx={{height: "100%", background: `linear-gradient(to bottom, plum, black)`}}
-                                value="10"
+                                value="20"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6} lg={2.3}>
                             <OverviewWidget
                                 icon="3"
-                                text={"Treinos Semanais"}
+                                text={"Reservas Semanais"}
                                 differenceDay={"semana"}
                                 difference={1}
                                 positive={false}
                                 sx={{height: "100%", background: `linear-gradient(to bottom, lightgreen, black)`}}
-                                value="23"
+                                value="127"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6} lg={2.3}>
                             <OverviewWidget
                                 icon="4"
-                                text={"Treinos Mensais"}
+                                text={"Reservas Mensais"}
                                 differenceDay={"mês"}
                                 difference={11}
                                 positive={true}
                                 sx={{height: "100%", background: `linear-gradient(to bottom, skyblue  , black)`}}
-                                value="98"
+                                value="513"
                             />
                         </Grid>
                     </Grid>
