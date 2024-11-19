@@ -22,7 +22,7 @@ const Page = () => {
     const [map, setMap] = useState(null);
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "YOUR_GOOGLE_MAPS_API_KEY", // Replace with your API Key
+        googleMapsApiKey: "AIzaSyDi5uCB8RnFAUpnjxy46vrrucxGatzZf7M", // Replace with your API Key
     });
 
     // Centers the map on a specific marker
