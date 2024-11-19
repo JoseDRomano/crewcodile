@@ -6,20 +6,26 @@ import { OverviewWidget } from "@/sections/overview/overview-widget";
 import { dark_green } from "../theme/colors";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
-const center = { lat: 38.736946, lng: -9.142685 }; // Coordinates between Lisboa and Almada
+// Lisbon and Almada center point
+const center = { lat: 38.736946, lng: -9.142685 };
+
+// Actual Ribs & Company locations
 const markers = [
-    { id: 1, name: "ALMD - Almada", lat: 38.704736, lng: -9.178246 },
-    { id: 2, name: "LSB - Lisboa", lat: 38.722252, lng: -9.139337 },
-    { id: 3, name: "CMB - Comércio", lat: 38.742334, lng: -9.160352 },
+    { id: 1, name: "ALMD1 - Praça de Almada", lat: 38.676121, lng: -9.160743 },
+    { id: 2, name: "ALMD2 - Almada Fórum", lat: 38.659724, lng: -9.177223 },
+    { id: 3, name: "LIS1 - Amoreiras", lat: 38.726122, lng: -9.154537 },
+    { id: 4, name: "LIS2 - Vasco da Gama", lat: 38.768175, lng: -9.094523 },
+    { id: 5, name: "LIS3 - Colombo", lat: 38.752041, lng: -9.194892 }
 ];
 
 const Page = () => {
     const [map, setMap] = useState(null);
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "AIzaSyDi5uCB8RnFAUpnjxy46vrrucxGatzZf7M", // Replace with your API Key
+        googleMapsApiKey: "YOUR_GOOGLE_MAPS_API_KEY", // Replace with your API Key
     });
 
+    // Centers the map on a specific marker
     const centerOnMarker = (lat, lng) => {
         if (map) {
             map.panTo({ lat, lng });
