@@ -47,7 +47,7 @@ async function sendEmail(name,email){
         host: 'smtp.elasticemail.com',
         port: 2525,
         auth: {
-          user: 'help@trainwith.me',
+          user: 'help@CrewCodille',
           pass: '7C6B99110DEAF8F0C7566E416D7F113A9254',
         },
       });
@@ -55,14 +55,14 @@ async function sendEmail(name,email){
       const options = {
         from: 'p.grilo@campus.fct.unl.pt',
         to: email,
-        subject: 'Bem-vindo(a) à TrainWith.Me',
+        subject: 'Bem-vindo(a) à CrewCodille',
         html: `<!DOCTYPE html>
         <html lang="pt">
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>TrainWith.Me - Novo Registo</title>
+            <title>CrewCodille - Novo Registo</title>
         </head>
         <body style="font-family: 'Arial', sans-serif;">
         
@@ -70,26 +70,26 @@ async function sendEmail(name,email){
             <tr>
             <td style="background-color: rgb(198, 156, 109); padding: 20px; text-align: center; color: #ffffff;">
                 <img src='https://trainwithme.vercel.app/_next/image?url=%2Flogo192.png&w=128&q=75' alt="Train With Me Logo" style="max-width: 100px; height: auto;">
-                <h2>TrainWith.Me</h2>
+                <h2>CrewCodille</h2>
                 <p>O seu novo registo foi bem-sucedido!</p>
             </td>
         </tr>   
                 <tr>
                     <td style="padding: 20px;">
                         <p>Olá ${name},</p>
-                        <p>Parabéns! O seu registo na aplicação "TrainWith.Me" foi concluído com sucesso. A seguir, encontrará os detalhes da sua conta:</p>
+                        <p>Parabéns! O seu registo na aplicação "CrewCodille" foi concluído com sucesso. A seguir, encontrará os detalhes da sua conta:</p>
                         <ul>
                             <li><strong>Email:</strong>${email}</li>
                             <li><strong>Palavra-passe:</strong>${password}</li>
                         </ul>
                         <p>Agora, podes utilizar estas credenciais para fazer o login na app <a href="https://trainwithme.vercel.app/">aqui</a>. Recomendamos que altere a sua palavra-passe após o primeiro acesso.</p>
                         <p>Se precisar de ajuda ou tiver alguma dúvida, não hesite em contactar-nos.</p>
-                        <p>Obrigado por escolher o "TrainWith.Me"!</p>
+                        <p>Obrigado por escolher o "CrewCodille"!</p>
                     </td>
                 </tr>
                 <tr>
                     <td style="background-color: #f2f2f2; padding: 20px; text-align: center;">
-                        <p>&copy; 2023 TrainWith.Me. Todos os direitos reservados.</p><br>
+                        <p>&copy; 2023 CrewCodille. Todos os direitos reservados.</p><br>
                         <p>Ps: é apenas placeholder, pois o client ainda não está implementado</p>
                     </td>
                 </tr>

@@ -8,7 +8,7 @@ const Page = () => (
     <>
         <Head>
             <title>
-                Account | TrainWith.Me
+                Account | CrewCodille
             </title>
         </Head>
         <Box

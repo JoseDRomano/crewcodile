@@ -26,7 +26,7 @@ const Page = () => {
     }, [])
     return (<>
             <Head>
-                <title>Dashboard | TrainWith.Me</title>
+                <title>Dashboard | CrewCodille</title>
             </Head>
             <Box
                 component="main"

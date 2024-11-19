@@ -28,7 +28,7 @@ const StudentPage = (params) => {
         <>
 
             <Head>
-                <title>Aluno | TrainWith.Me</title>
+                <title>Aluno | CrewCodille</title>
             </Head>
             <Box
                 component="main"

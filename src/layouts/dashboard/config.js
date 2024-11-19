@@ -9,7 +9,7 @@ import CalendarDaysIcon from '@heroicons/react/24/solid/CalendarDaysIcon'
 
 export const items = [
     {
-        title: 'Vista geral',
+        title: 'Dashboard',
         path: '/',
         icon: (
             <SvgIcon fontSize="small">
@@ -17,26 +17,26 @@ export const items = [
             </SvgIcon>
         )
     },
+    // {
+    //     title: 'Gerir Staffs',
+    //     path: '/workouts',
+    //     icon: (
+    //         <SvgIcon fontSize="small">
+    //             <ClipboardDocumentListIcon/>
+    //         </SvgIcon>
+    //     )
+    // },
+    // {
+    //     title: 'Histórico de reservas',
+    //     path: '/workouts-history',
+    //     icon: (
+    //         <SvgIcon fontSize="small">
+    //             <CalendarDaysIcon/>
+    //         </SvgIcon>
+    //     )
+    // },
     {
-        title: 'Gerir Staffs',
-        path: '/workouts',
-        icon: (
-            <SvgIcon fontSize="small">
-                <ClipboardDocumentListIcon/>
-            </SvgIcon>
-        )
-    },
-    {
-        title: 'Histórico de reservas',
-        path: '/workouts-history',
-        icon: (
-            <SvgIcon fontSize="small">
-                <CalendarDaysIcon/>
-            </SvgIcon>
-        )
-    },
-    {
-        title: 'Staff',
+        title: 'Manage Staff',
         path: '/students',
         icon: (
             <SvgIcon fontSize="small">
@@ -45,7 +45,7 @@ export const items = [
         )
     },
     {
-        title: 'Menu do Restaurante',
+        title: 'Restaurant Menu',
         path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">
@@ -54,7 +54,7 @@ export const items = [
         )
     },
     {
-        title: 'Estatísticas',
+        title: 'Statistics',
         path: '/stats',
         icon: (
             <SvgIcon fontSize="small">
