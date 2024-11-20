@@ -9,7 +9,7 @@ import { AddExerciseDialog } from "../sections/exercises/add-dialog";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { useEffect, useState } from "react";
-import { ConfirmDialog } from "@/sections/students/confirm-dialog";
+import { ConfirmDialog } from "@/sections/staff/confirm-dialog";
 
 const ExercisesPage = () => {
   const [exercises, setExercises] = useState([]);

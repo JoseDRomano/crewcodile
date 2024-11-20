@@ -34,48 +34,50 @@ export const AddUserDialog = () => {
     initialValues: {
       name: "",
       email: "",
-      objective: "",
-      weight: "",
-      height: "",
-      bodyFat: "",
+      role: "",
+      restaurant: "",
       photo: null,
       submit: null,
     },
     validationSchema: Yup.object({
-      name: Yup.string().max(255).required("O nome é necessário"),
+      name: Yup.string().max(255).required("The name is necessary"),
+      role: Yup.string().max(255).required("The role is necessary"),
+      restaurant: Yup.string().max(255).required("The restaurant is necessary"),
       email: Yup.string()
-        .email("O email tem que ser válido")
+        .email("The email address must be valid")
         .max(255)
-        .required("O email é necessário"),
-      objective: Yup.string().max(255).required("O objetivo é necessário."),
-      weight: Yup.number().positive("O peso deve ser positivo").required("O peso é necessário."),
-      height: Yup.number().positive("A altura deve ser positiva").required("A altura é necessária"),
-      bodyFat: Yup.number()
-        .positive("A massa gorda deve ser positiva")
-        .required("A massa gorda(%) é necessária"),
+        .required("The email is necessary")
     }),
     onSubmit: async (values, helpers) => {
-      //console.log(values);
+      console.log(values);
       try {
-        //add student to db
+        //add staff member to db
 
-        const addMessage = `Ao adicionar um novo estudante, irá ser enviado para o email ${values.email} uma palavra-passe gerada para o mesmo aceder ao website.`;
-        const editMessage = `Tem a certeza que quer editar o estudante ${values.email}?`;
+        const addMessage = `By adding this new staff member, an email will be sent to ${values.email}.`;
+        const editMessage = `Are you sure you want to add the staff member ${values.email}?`;
 
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
 
-        if (dialog.getType().type == "editstd") values.id = dialog.getType().user._id;
+        if (dialog.getType().type == "editstaff") values.id = dialog.getType().user._id;
 
         const addEditUserAction = () => {
-          fetch("/api/students", {
-            method: dialog.getType().type == "editstd" ? "PUT" : "POST",
+          console.log("Sending request to the server...");
+          fetch("/api/staff", {
+            method: dialog.getType().type == "editstaff" ? "PUT" : "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(values),
-          });
-          
+          })
+              .then(response => response.json())
+              .then(data => {
+                console.log("Response from the server:", data);
+              })
+              .catch(error => {
+                console.error("Error during fetch:", error);
+              });
+
         helpers.setSubmitting(false);
         helpers.resetForm();
         dialog.closeDialog();
@@ -84,9 +86,9 @@ export const AddUserDialog = () => {
         };
 
         dialog.setDialogContent({
-          title: dialog.getType().type == "editstd" ? "Editar um aluno" : "Adicionar um aluno",
-          type: "confirmstd",
-          content: dialog.getType().type == "editstd" ? editMessage : addMessage,
+          title: dialog.getType().type == "editstaff" ? "Edit a staff member" : "Add a staff member",
+          type: "confirmstaff",
+          content: dialog.getType().type == "editstaff" ? editMessage : addMessage,
           action: addEditUserAction,
         });
 
@@ -99,21 +101,17 @@ export const AddUserDialog = () => {
   });
 
   useEffect(() => {
-    if (dialog.getType().type == "editstd") {
+    if (dialog.getType().type == "editstaff") {
       formik.setFieldValue("name", dialog.getType().user.name);
       formik.setFieldValue("email", dialog.getType().user.email);
-      formik.setFieldValue("objective", dialog.getType().user.objective);
-      formik.setFieldValue("weight", dialog.getType().user.weight);
-      formik.setFieldValue("height", dialog.getType().user.height);
-      formik.setFieldValue("bodyFat", dialog.getType().user.bodyFat);
+      formik.setFieldValue("role", dialog.getType().user.role);
+      formik.setFieldValue("restaurant", dialog.getType().user.restaurant);
       formik.setFieldValue("photo", dialog.getType().user.photo);
     } else {
       formik.setFieldValue("name", "");
       formik.setFieldValue("email", "");
-      formik.setFieldValue("objective", "");
-      formik.setFieldValue("weight", "");
-      formik.setFieldValue("height", "");
-      formik.setFieldValue("bodyFat", "");
+      formik.setFieldValue("role", "");
+      formik.setFieldValue("restaurant", "");
       formik.setFieldValue("photo", null);
     }
   }, [dialog]);
@@ -146,47 +144,24 @@ export const AddUserDialog = () => {
               value={formik.values.email}
             />
             <TextField
-              error={!!(formik.touched.objective && formik.errors.objective)}
-              fullWidth
-              helperText={formik.touched.objective && formik.errors.objective}
-              label="Objetivo (Ex: ganho de massa muscular)"
-              name="objective"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.objective}
+                error={!!(formik.touched.role && formik.errors.role)}
+                fullWidth
+                helperText={formik.touched.role && formik.errors.role}
+                label="Role"
+                name="role"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.role}
             />
             <TextField
-              error={!!(formik.touched.weight && formik.errors.weight)}
-              fullWidth
-              helperText={formik.touched.weight && formik.errors.weight}
-              label="Peso (kg)"
-              name="weight"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="number"
-              value={formik.values.weight}
-            />
-            <TextField
-              error={!!(formik.touched.height && formik.errors.height)}
-              fullWidth
-              helperText={formik.touched.height && formik.errors.height}
-              label="Altura (cm)"
-              name="height"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="number"
-              value={formik.values.height}
-            />
-            <TextField
-              error={!!(formik.touched.bodyFat && formik.errors.bodyFat)}
-              fullWidth
-              helperText={formik.touched.bodyFat && formik.errors.bodyFat}
-              label="Massa Gorda (%)"
-              name="bodyFat"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="number"
-              value={formik.values.bodyFat}
+                error={!!(formik.touched.restaurant && formik.errors.restaurant)}
+                fullWidth
+                helperText={formik.touched.restaurant && formik.errors.restaurant}
+                label="Restaurant"
+                name="restaurant"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.restaurant}
             />
             <Button
               component="label"
@@ -202,8 +177,8 @@ export const AddUserDialog = () => {
               startIcon={<CloudUploadIcon />}
             >
               {formik.values?.photo
-                ? "Foto carregada com sucesso"
-                : "Escolher uma foto para o aluno"}
+                ? "Photo uploaded successfully"
+                : "Choose a photo for the  staff member"}
               <VisuallyHiddenInput name="photo" type="file" />
             </Button>
           </Stack>
@@ -219,7 +194,7 @@ export const AddUserDialog = () => {
             type="submit"
             variant="contained"
           >
-            {dialog.getType().type == "editstd" ? "Editar" : "Adicionar"} aluno
+            {dialog.getType().type == "editstaff" ? "Edit" : "Add"} Staff Member
           </Button>
         </form>
       </DialogContent>

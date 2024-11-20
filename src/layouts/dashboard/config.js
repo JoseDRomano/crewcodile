@@ -37,7 +37,7 @@ export const items = [
     // },
     {
         title: 'Manage Staff',
-        path: '/students',
+        path: '/staff',
         icon: (
             <SvgIcon fontSize="small">
                 <UserGroupIcon/>
