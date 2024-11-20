@@ -6,19 +6,19 @@ import {Avatar, Box, Card, CardContent, CardHeader, Container, Grid, Stack, Typo
 import {OverviewWidget} from "@/sections/overview/overview-widget";
 import {formatCreatedDate} from "@/utils/format"
 
-const StudentPage = (params) => {
+const StaffMemberPage = (params) => {
     const router = useRouter()
-    const [student, setStudent] = useState({});
+    const [staff, setStaff] = useState({});
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch(`/api/student?id=${router.query.id}`, {
+            let response = await fetch(`/api/staff?id=${router.query.id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             })
-            setStudent(await response.json())
+            setStaff(await response.json())
         }
 
         fetchMyAPI()
@@ -28,7 +28,7 @@ const StudentPage = (params) => {
         <>
 
             <Head>
-                <title>Aluno | CrewCodille</title>
+                <title>Staff | CrewCodille</title>
             </Head>
             <Box
                 component="main"
@@ -43,7 +43,7 @@ const StudentPage = (params) => {
                         gutterBottom
                         variant="h5"
                     >
-                        Alunos - {student.name}
+                        Staff - {staff.name}
                     </Typography>
                     <br></br>
 
@@ -75,13 +75,13 @@ const StudentPage = (params) => {
                                             gutterBottom
                                             variant="h5"
                                         >
-                                            {student.name}
+                                            {staff.name}
                                         </Typography>
                                         <Typography
                                             color="text.secondary"
                                             variant="body2"
                                         >
-                                            {student.email}
+                                            {staff.email}
                                         </Typography>
 
                                     </Box>
@@ -216,7 +216,7 @@ const StudentPage = (params) => {
                                                                     md={6}
                                                                 >
                                                                     <Typography>
-                                                                        Peso: {student.weight}kg
+                                                                        Peso: {staff.name}kg
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid
@@ -224,14 +224,14 @@ const StudentPage = (params) => {
                                                                     md={6}
                                                                 >
                                                                     <Typography>
-                                                                        Altura: {student.height}cm
+                                                                        Altura: {staff.name}cm
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid
                                                                     xs={12}
                                                                     md={6}
                                                                 >
-                                                                    Percentagem de massa gorda: {student.bodyFat}%
+                                                                    Percentagem de massa gorda: {student.name}%
                                                                 </Grid>
                                                                 <Grid
                                                                     xs={12}
@@ -267,7 +267,7 @@ const StudentPage = (params) => {
 }
 
 
-StudentPage.getLayout = (page) => (
+StaffMemberPage.getLayout = (page) => (
     <DashboardLayout>
         {page}
     </DashboardLayout>

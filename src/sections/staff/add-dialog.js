@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { dark_green } from "../../theme/colors";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
-import { ConfirmDialog } from "./confirm-dialog";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -44,18 +43,13 @@ export const AddUserDialog = () => {
       role: Yup.string().max(255).required("The role is necessary"),
       restaurant: Yup.string().max(255).required("The restaurant is necessary"),
       email: Yup.string()
-        .email("The email address must be valid")
-        .max(255)
-        .required("The email is necessary")
+          .email("The email address must be valid")
+          .max(255)
+          .required("The email is necessary"),
     }),
     onSubmit: async (values, helpers) => {
       console.log(values);
       try {
-        //add staff member to db
-
-        const addMessage = `By adding this new staff member, an email will be sent to ${values.email}.`;
-        const editMessage = `Are you sure you want to add the staff member ${values.email}?`;
-
         helpers.setStatus({ success: true });
         helpers.setSubmitting(true);
 
@@ -70,28 +64,29 @@ export const AddUserDialog = () => {
             },
             body: JSON.stringify(values),
           })
-              .then(response => response.json())
-              .then(data => {
+              .then((response) => response.json())
+              .then((data) => {
                 console.log("Response from the server:", data);
               })
-              .catch(error => {
+              .catch((error) => {
                 console.error("Error during fetch:", error);
               });
 
-        helpers.setSubmitting(false);
-        helpers.resetForm();
-        dialog.closeDialog();
+          helpers.setSubmitting(false);
+          helpers.resetForm();
+          dialog.closeDialog();
 
-        router.reload();
+          router.reload();
         };
 
         dialog.setDialogContent({
           title: dialog.getType().type == "editstaff" ? "Edit a staff member" : "Add a staff member",
           type: "confirmstaff",
-          content: dialog.getType().type == "editstaff" ? editMessage : addMessage,
+          content: dialog.getType().type == "editstaff"
+              ? `Are you sure you want to edit the staff member ${values.email}?`
+              : `Are you sure you want to add this new staff member?`,
           action: addEditUserAction,
         });
-
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
@@ -117,90 +112,90 @@ export const AddUserDialog = () => {
   }, [dialog]);
 
   return (
-    <FormDialog>
-      <DialogTitle>{dialog.getType().title}</DialogTitle>
-      <DialogContent>
-        <form noValidate onSubmit={formik.handleSubmit}>
-          <Stack spacing={2}>
-            <TextField
-              error={!!(formik.touched.name && formik.errors.name)}
-              fullWidth
-              helperText={formik.touched.name && formik.errors.name}
-              label="Nome"
-              name="name"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            />
-            <TextField
-              error={!!(formik.touched.email && formik.errors.email)}
-              fullWidth
-              helperText={formik.touched.email && formik.errors.email}
-              label="Email"
-              name="email"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
-            />
-            <TextField
-                error={!!(formik.touched.role && formik.errors.role)}
-                fullWidth
-                helperText={formik.touched.role && formik.errors.role}
-                label="Role"
-                name="role"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.role}
-            />
-            <TextField
-                error={!!(formik.touched.restaurant && formik.errors.restaurant)}
-                fullWidth
-                helperText={formik.touched.restaurant && formik.errors.restaurant}
-                label="Restaurant"
-                name="restaurant"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.restaurant}
-            />
+      <FormDialog>
+        <DialogTitle>{dialog.getType().title}</DialogTitle>
+        <DialogContent>
+          <form noValidate onSubmit={formik.handleSubmit}>
+            <Stack spacing={2}>
+              <TextField
+                  error={!!(formik.touched.name && formik.errors.name)}
+                  fullWidth
+                  helperText={formik.touched.name && formik.errors.name}
+                  label="Name"
+                  name="name"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
+              />
+              <TextField
+                  error={!!(formik.touched.email && formik.errors.email)}
+                  fullWidth
+                  helperText={formik.touched.email && formik.errors.email}
+                  label="Email"
+                  name="email"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="email"
+                  value={formik.values.email}
+              />
+              <TextField
+                  error={!!(formik.touched.role && formik.errors.role)}
+                  fullWidth
+                  helperText={formik.touched.role && formik.errors.role}
+                  label="Role"
+                  name="role"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.role}
+              />
+              <TextField
+                  error={!!(formik.touched.restaurant && formik.errors.restaurant)}
+                  fullWidth
+                  helperText={formik.touched.restaurant && formik.errors.restaurant}
+                  label="Restaurant"
+                  name="restaurant"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.restaurant}
+              />
+              <Button
+                  component="label"
+                  onChange={(event) => {
+                    let reader = new FileReader();
+                    let file = event.target.files[0];
+                    reader.onloadend = () => {
+                      formik.setFieldValue("photo", reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                  }}
+                  variant="contained"
+                  startIcon={<CloudUploadIcon />}
+              >
+                {formik.values?.photo
+                    ? "Photo uploaded successfully"
+                    : "Choose a photo for the staff member"}
+                <VisuallyHiddenInput name="photo" type="file" />
+              </Button>
+            </Stack>
+            {formik.errors.submit && (
+                <Typography color="error" sx={{ mt: 3, backgroundColor: dark_green.main }} variant="body2">
+                  {formik.errors.submit}
+                </Typography>
+            )}
             <Button
-              component="label"
-              onChange={(event) => {
-                let reader = new FileReader();
-                let file = event.target.files[0];
-                reader.onloadend = () => {
-                  formik.setFieldValue("photo", reader.result);
-                };
-                reader.readAsDataURL(file);
-              }}
-              variant="contained"
-              startIcon={<CloudUploadIcon />}
+                fullWidth
+                size="large"
+                sx={{ mt: 3, backgroundColor: dark_green.main, "&:hover": { backgroundColor: dark_green.dark } }}
+                type="submit"
+                variant="contained"
             >
-              {formik.values?.photo
-                ? "Photo uploaded successfully"
-                : "Choose a photo for the  staff member"}
-              <VisuallyHiddenInput name="photo" type="file" />
+              {dialog.getType().type == "editstaff" ? "Edit" : "Add"} Staff Member
             </Button>
-          </Stack>
-          {formik.errors.submit && (
-            <Typography color="error" sx={{ mt: 3, backgroundColor: dark_green.main }} variant="body2">
-              {formik.errors.submit}
-            </Typography>
-          )}
-          <Button
-            fullWidth
-            size="large"
-            sx={{ mt: 3, backgroundColor: dark_green.main, "&:hover": { backgroundColor: dark_green.dark } }}
-            type="submit"
-            variant="contained"
-          >
-            {dialog.getType().type == "editstaff" ? "Edit" : "Add"} Staff Member
-          </Button>
-        </form>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={dialog.closeDialog}>Cancel</Button>
-      </DialogActions>
-    </FormDialog>
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={dialog.closeDialog}>Cancel</Button>
+        </DialogActions>
+      </FormDialog>
   );
 };

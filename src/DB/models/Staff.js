@@ -9,6 +9,6 @@ const StaffSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
 });
 
-const Staff = mongoose.models?.Staff || mongoose.model("Staff", staffSchema, "staffs");
+const Staff = mongoose.models?.Staff || mongoose.model("Staff", StaffSchema, "staffs");
 
 export default Staff;
