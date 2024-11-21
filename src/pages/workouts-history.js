@@ -9,7 +9,7 @@ import { AddWorkoutHistoryDialog } from "../sections/workouts-history/add-dialog
 import { formatCreatedDate } from "@/utils/format";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-import { ConfirmDialog } from "@/sections/staff/confirm-dialog";
+import { ConfirmDialog } from "@/sections/students/confirm-dialog";
 
 const WorkoutHistoryPage = () => {
   const [workoutHistory, setWorkoutHistory] = useState([]);

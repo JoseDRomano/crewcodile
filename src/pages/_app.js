@@ -6,7 +6,7 @@ import {CssBaseline} from '@mui/material';
 import {ThemeProvider} from '@mui/material/styles';
 import {AuthConsumer, AuthProvider} from 'src/contexts/auth-context';
 import {useNProgress} from 'src/hooks/use-nprogress';
-import {buildTheme} from 'src/theme';
+import {createTheme} from 'src/theme';
 import {createEmotionCache} from 'src/utils/create-emotion-cache';
 import 'simplebar-react/dist/simplebar.min.css';
 import {DialogProvider} from '../contexts/dialog-context';
@@ -23,7 +23,7 @@ const App = (props) => {
 
     const getLayout = Component.getLayout ?? ((page) => page);
 
-    const theme = buildTheme();
+    const theme = createTheme();
 
     return (
         <CacheProvider value={emotionCache}>

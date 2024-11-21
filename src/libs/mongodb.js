@@ -2,14 +2,10 @@ import mongoose from "mongoose";
 
 const connectMongoDB = async () => {
     try {
-        // Specify the database name as "api"
-        await mongoose.connect("mongodb+srv://rdbernardino:123@cluster0.uykvy.mongodb.net/api?retryWrites=true&w=majority&appName=Cluster0", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Connected to MongoDB database: api");
+        await mongoose.connect("mongodb+srv://trainwithme:zAvqXZQqVVha25Js@trainwithmecluster.nh9heae.mongodb.net/?retryWrites=true&w=majority");
+        console.log("Connected to MongoDB.");
     } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
+        console.log(error);
     }
 };
 

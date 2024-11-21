@@ -12,7 +12,7 @@ export const ConfirmDialog = () => {
           <Typography>{dialog.getType().content}</Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={dialog.closeDialog}>No</Button>
+          <Button onClick={dialog.closeDialog}>Não</Button>
           <Button
             onClick={() => {
               dialog.getType().action();
@@ -20,7 +20,7 @@ export const ConfirmDialog = () => {
             }}
             autoFocus
           >
-            Yes
+            Sim
           </Button>
         </DialogActions>
       </FormDialog>

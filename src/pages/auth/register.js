@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import {Box, Button, Link, Stack, TextField, Typography} from '@mui/material';
 import {useAuth} from 'src/hooks/use-auth';
 import {Layout as AuthLayout} from 'src/layouts/auth/layout';
-import { ConfirmDialog } from '@/sections/staff/confirm-dialog';
+import { ConfirmDialog } from '@/sections/students/confirm-dialog';
 import { sleep } from '@/utils/sleep';
 import { useDialog } from '@/contexts/dialog-context';
 

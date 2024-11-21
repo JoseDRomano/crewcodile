@@ -37,7 +37,7 @@ export const items = [
     // },
     {
         title: 'Manage Staff',
-        path: '/staff',
+        path: '/students',
         icon: (
             <SvgIcon fontSize="small">
                 <UserGroupIcon/>
@@ -46,7 +46,7 @@ export const items = [
     },
     {
         title: 'Restaurant Menu',
-        path: '/restaurantMenu',
+        path: '/exercises',
         icon: (
             <SvgIcon fontSize="small">
                 <CircleStack/>

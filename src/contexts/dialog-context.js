@@ -1,4 +1,4 @@
-import { AddUserDialog, EditUserDialog } from '@/sections/staff/add-dialog';
+import { AddUserDialog, EditUserDialog } from '@/sections/students/add-dialog';
 import React, {createContext, useContext, useState} from 'react';
 
 const DialogContext = createContext();
