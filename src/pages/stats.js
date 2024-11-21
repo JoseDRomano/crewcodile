@@ -1,152 +1,116 @@
-import React from "react";
 import Head from "next/head";
-import { Box, Container, Grid, Typography, Card, CardContent, CardMedia, Button, Select, MenuItem } from "@mui/material";
-import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
+import {Box, Container, Grid, Typography} from "@mui/material";
+import {Layout as DashboardLayout} from "src/layouts/dashboard/layout";
+import {OverviewDB} from "src/sections/overview/overview-db";
 import InfoIcon from "@mui/icons-material/Info";
+import {OverviewTraffic} from "src/sections/overview/overview-traffic";
 
-const Stats = () => {
-  return (
+const now = new Date();
+
+const Stats = () => (
     <>
-      <Head>
-        <title>Statistics | CrewCodile</title>
-      </Head>
-      <Box component="section" sx={{ p: 2 }}>
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
-          Statistics
-        </Typography>
-        <Container maxWidth="xl">
-          <Grid container spacing={4}>
-            {/* Header with Monthly/Yearly Filter */}
-            <Grid item xs={12}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                <Box>
-                  <Button variant="contained" color="primary" sx={{ mr: 1 }}>
-                    Monthly
-                  </Button>
-                  <Button variant="outlined">Yearly</Button>
-                </Box>
-                <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "medium", mr: 2, display: "inline-block" }}>
-                    Month Filter:
-                  </Typography>
-                  <Select defaultValue="January" sx={{ minWidth: 120 }}>
-                    <MenuItem value="January">January</MenuItem>
-                    <MenuItem value="February">February</MenuItem>
-                    <MenuItem value="March">March</MenuItem>
-                  </Select>
-                </Box>
-              </Box>
-            </Grid>
+        <Head>
+            <title>Estatísticas | Train with me</title>
+        </Head>
+        <Box
+            component="main"
+            sx={{
+                flexGrow: 1,
+                py: 20,
+            }}
+        >
+            <Container maxWidth="xl">
+                <Grid container spacing={3}>
+                    {/* First Text Box */}
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Box
+                            sx={{
+                                bgcolor: "plum",
+                                color: "white",
+                                p: 1,
+                                borderRadius: 4,
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
+                            <InfoIcon sx={{fontSize: 18, mr: 1}}/>
+                            <Typography variant="body2">Data de abertura do restaurante</Typography>
+                            <Box ml={10}> {/* Adding space here */}
+                                <Typography variant="subtitle2" fontWeight="bold">18-10-2022</Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
 
-            {/* Customer Satisfaction Gauge */}
-            <Grid item xs={12} md={6}>
-              <Card sx={{ textAlign: "center", p: 2 }}>
-                <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
-                  Customer Satisfaction
-                </Typography>
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: "150px",
-                    height: "75px",
-                    margin: "0 auto",
-                    borderTopLeftRadius: "75px",
-                    borderTopRightRadius: "75px",
-                    background: "linear-gradient(to right, red, orange, green)",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      width: "2px",
-                      height: "75px",
-                      backgroundColor: "black",
-                      left: "50%",
-                      bottom: "0",
-                      transformOrigin: "bottom",
-                      transform: "rotate(25deg)", // Adjust angle based on satisfaction score
-                    }}
-                  />
-                </Box>
-              </Card>
-            </Grid>
+                    {/* Second Text Box */}
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Box
+                            sx={{
+                                bgcolor: "lightgreen",
+                                color: "white",
+                                p: 1,
+                                borderRadius: 4,
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
+                            <InfoIcon sx={{fontSize: 18, mr: 1}}/>
+                            <Typography variant="body2">Número total de clientes</Typography>
+                            <Box ml={10}> {/* Adding space here */}
+                                <Typography variant="subtitle2" fontWeight="bold">39335</Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
 
-            {/* Revenue Section */}
-            <Grid item xs={12} md={6}>
-              <Card sx={{ textAlign: "center", p: 2 }}>
-                <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
-                  Revenue (Profit)
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 1 }}>
-                  Gross: <Typography component="span" fontWeight="bold">$75,000</Typography>
-                </Typography>
-                <Typography variant="body1">
-                  Net: <Typography component="span" fontWeight="bold">$41,000</Typography>
-                </Typography>
-              </Card>
-            </Grid>
+                    {/* Third Text Box */}
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Box
+                            sx={{
+                                bgcolor: "skyblue",
+                                color: "white",
+                                p: 1,
+                                borderRadius: 4,
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
+                            <InfoIcon sx={{fontSize: 18, mr: 1}}/>
+                            <Typography variant="body2">Reservas futuras</Typography>
+                            <Box ml={10}> {/* Adding space here */}
+                                <Typography variant="subtitle2" fontWeight="bold">43</Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
 
-            {/* Best Sellers Section */}
-            <Grid item xs={12}>
-              <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
-                Best Sellers
-              </Typography>
-              <Grid container spacing={4}>
-                {/* Best Seller Item 1 */}
-                <Grid item xs={12} md={6}>
-                  <Card sx={{ display: "flex" }}>
-                    <CardMedia
-                      component="img"
-                      sx={{ width: 150 }}
-                      image="https://via.placeholder.com/150"
-                      alt="Mom's Lasagna"
-                    />
-                    <CardContent>
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        Mom's Lasagna
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        A large savory slice of our 5-layered homemade lasagna baked in our bolognese sauce, topped with mozzarella.
-                      </Typography>
-                      <Typography variant="subtitle2" fontWeight="bold">
-                        $17.99+
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                    {/* OverviewDB Component */}
+                    <Grid item xs={12} lg={6} sx={{display: 'flex', justifyContent: 'center'}}>
+                        <Box sx={{width: '100%', mt: 3,}}>
+                            <OverviewDB
+                                chartSeries={[
+                                    {name: "This year", data: [2191, 1421, 2355, 2512, 1319, 3866, 5040, 2636, 1200, 1201, 1202, 1227]},
+                                    {name: "Last year", data: [2879, 1697, 1509, 1517, 1449, 1527, 1200, 1201, 1202, 1203, 1204, 1301]}
+                                    
+                                ]}
+                                sx={{height: "100%"}}
+                            />
+                        </Box>
+                    </Grid>
+
+                    {/* OverviewTraffic Component */}
+                    <Grid item xs={12} lg={6} sx={{display: 'flex', justifyContent: 'center'}}>
+                        <Box sx={{width: '100%', mt: 3}}>
+                            <OverviewTraffic
+                                chartSeries={[82, 5, 13]}
+                                labels={['Positivo', 'Neutro', 'Negativo']}
+                                sx={{height: '100%'}}
+                            />
+                        </Box>
+                    </Grid>
                 </Grid>
-
-                {/* Best Seller Item 2 */}
-                <Grid item xs={12} md={6}>
-                  <Card sx={{ display: "flex" }}>
-                    <CardMedia
-                      component="img"
-                      sx={{ width: 150 }}
-                      image="https://via.placeholder.com/150"
-                      alt="Manicotti"
-                    />
-                    <CardContent>
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        Manicotti
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        2 large pasta tubes filled with ricotta cheese filling, baked in your favorite homemade pasta sauce.
-                      </Typography>
-                      <Typography variant="subtitle2" fontWeight="bold">
-                        $14.99
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+            </Container>
+        </Box>
     </>
-  );
-};
+);
 
 Stats.getLayout = (stats) => <DashboardLayout>{stats}</DashboardLayout>;
 
 export default Stats;
-
