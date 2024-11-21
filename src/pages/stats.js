@@ -150,3 +150,4 @@ Stats.getLayout = (stats) => <DashboardLayout>{stats}</DashboardLayout>;
 
 export default Stats;
 
+
