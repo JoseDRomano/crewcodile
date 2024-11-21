@@ -46,7 +46,7 @@ export const items = [
     },
     {
         title: 'Restaurant Menu',
-        path: '/exercises',
+        path: '/restaurantMenu',
         icon: (
             <SvgIcon fontSize="small">
                 <CircleStack/>
