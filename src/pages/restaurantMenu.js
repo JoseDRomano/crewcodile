@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Typography, Stack, Grid, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { useDialog } from "../contexts/dialog-context";
 import { AddRestaurantMenuDialog } from "../sections/restaurantMenu/add-dialog";
@@ -8,6 +9,7 @@ import { ConfirmDialog } from "@/sections/restaurantMenu/confirm-dialog";
 
 const RestaurantMenuPage = () => {
     const [menuItems, setMenuItems] = useState([]);
+    const [isRemoveMode, setIsRemoveMode] = useState(false); 
     const dialog = useDialog();
 
     useEffect(() => {
@@ -35,6 +37,25 @@ const RestaurantMenuPage = () => {
         });
     };
 
+    const handleRemoveDish = (item) => {
+        dialog.setDialogContent({
+            title: "Remove Menu Item",
+            type: "confirmmenu",
+            content: `Are you sure you want to remove the dish "${item.name}"?`,
+            action: async () => {
+                // Delete the dish from the backend
+                await fetch("/api/restaurantMenu", {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: item._id }),
+                });
+                // Remove the dish locally
+                setMenuItems((prevItems) => prevItems.filter((dish) => dish._id !== item._id));
+                dialog.closeDialog();
+            },
+        });
+    };
+
     return (
         <>
             {/* Dialogs */}
@@ -48,8 +69,12 @@ const RestaurantMenuPage = () => {
                     <Button variant="contained" color="primary" onClick={handleAddDish}>
                         Add Dish
                     </Button>
-                    <Button variant="contained" color="secondary">
-                        Remove Dish
+                    <Button
+                        variant="contained"
+                        color={isRemoveMode ? "error" : "secondary"}
+                        onClick={() => setIsRemoveMode((prev) => !prev)} // Ativa ou desativa o modo de remoção
+                    >
+                        {isRemoveMode ? "Cancel Remove" : "Remove Dish"}
                     </Button>
                 </Stack>
 
@@ -90,17 +115,34 @@ const RestaurantMenuPage = () => {
                                 </Box>
 
                                 {/* Edit Button */}
-                                <IconButton
-                                    onClick={handleEditClick(item)}
-                                    sx={{
-                                        position: "absolute",
-                                        top: 10,
-                                        right: 10,
-                                        backgroundColor: "rgba(255, 255, 255, 0.8)",
-                                    }}
-                                >
-                                    <EditIcon />
-                                </IconButton>
+                                {!isRemoveMode && (
+                                    <IconButton
+                                        onClick={handleEditClick(item)}
+                                        sx={{
+                                            position: "absolute",
+                                            top: 10,
+                                            right: 10,
+                                            backgroundColor: "rgba(255, 255, 255, 0.8)",
+                                        }}
+                                    >
+                                        <EditIcon />
+                                    </IconButton>
+                                )}
+
+                                {/* Remove Button */}
+                                {isRemoveMode && (
+                                    <IconButton
+                                        onClick={() => handleRemoveDish(item)}
+                                        sx={{
+                                            position: "absolute",
+                                            top: 10,
+                                            left: 10,
+                                            backgroundColor: "rgba(255, 255, 255, 0.8)",
+                                        }}
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
+                                )}
                             </Box>
                         </Grid>
                     ))}
