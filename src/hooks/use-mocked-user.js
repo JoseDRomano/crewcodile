@@ -5,6 +5,6 @@ export const useMockedUser = () => {
         id: '5e86809283e28b96d2d38537',
         avatar: '/assets/avatars/avatar-joaquim-alberto.png',
         name: 'Joaquim Alberto',
-        email: 'bbq_ribs_almada@crewcodile.me'
+        email: 'mammamia@crewcodile.me'
     };
 };

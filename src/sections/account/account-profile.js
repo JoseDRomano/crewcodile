@@ -5,7 +5,7 @@ const user = {
     avatar: '/assets/avatars/avatar-joaquim-alberto.png',
     city: 'Almada',
     country: "Portugal",
-    jobTitle: 'CEO BBQ Ribs',
+    jobTitle: 'CEO Mamma Mia',
     name: 'Joaquim Alberto',
 };
 

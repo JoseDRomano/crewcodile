@@ -33,9 +33,9 @@ const states = [
 
 export const AccountProfileDetails = () => {
     const [values, setValues] = useState({
-        firstName: 'BBQ',
-        lastName: 'RIBS',
-        email: 'bbq_ribs_almada@crewcodile.me',
+        firstName: 'Joaquim',
+        lastName: 'Alberto',
+        email: 'mammamia@crewcodile.me',
         phone: '',
         state: 'Almada',
         country: 'Portugal'

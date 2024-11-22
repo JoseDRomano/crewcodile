@@ -85,7 +85,7 @@ export const AuthProvider = (props) => {
                 id: '5e86809283e28b96d2d38537',
                 avatar: '/assets/avatars/avatar-joaquim-alberto.png',
                 name: 'Joaquim Alberto',
-                email: 'bbq_ribs_almada@crewcodile.me'
+                email: 'mammamia@crewcodile.me'
             };
 
             dispatch({
@@ -118,7 +118,7 @@ export const AuthProvider = (props) => {
             id: '5e86809283e28b96d2d38537',
             avatar: '/assets/avatars/avatar-joaquim-alberto.png',
             name: 'Joao Anacleto',
-            email: 'bbq_ribs_almada@crewcodile.me'
+            email: 'mammamia@crewcodile.me'
         };
 
         dispatch({
@@ -128,7 +128,7 @@ export const AuthProvider = (props) => {
     };
 
     const signIn = async (email, password) => {
-        if (email !== 'bbq_ribs_almada@crewcodile.me' || password !== 'Password123!') {
+        if (email !== 'mammamia@crewcodile.me' || password !== 'Password123!') {
             throw new Error('Please check your email and password');
         }
 
@@ -142,7 +142,7 @@ export const AuthProvider = (props) => {
             id: '5e86809283e28b96d2d38537',
             avatar: '/assets/avatars/avatar-joaquim-alberto.png',
             name: 'BBQ RIBS',
-            email: 'bbq_ribs_almada@crewcodile.me'
+            email: 'mammamia@crewcodile.me'
         };
 
         dispatch({
