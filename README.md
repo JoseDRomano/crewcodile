@@ -1,9 +1,8 @@
 # Website no âmbito da cadeira de IPM
 CrewCodile - IPM
 
-Este website utiliza o Next JS com Typescript e uma biblioteca MUI para os estilos.
+Esta app utiliza o Next JS com Typescript e uma biblioteca MUI para os estilos.
 
-Está a ser desenvolvido como portofólio da cadeira, para postar os updates do Projeto final ao longo do tempo.
 
 ## Como usar
 
