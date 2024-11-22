@@ -361,6 +361,7 @@ const Stats = () => {
           },
         ],
       },
+
       December: {
         satisfaction: 0.89,
         revenue: [
