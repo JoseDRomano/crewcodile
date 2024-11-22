@@ -44,6 +44,7 @@
     "react-apexcharts": "1.4.0",
     "react-calendar": "^4.6.1",
     "react-dom": "18.2.0",
+    "react-gauge-chart": "^0.5.1",
     "recharts": "^2.13.3",
     "simplebar-react": "^3.2.4",
     "yup": "1.0.0"

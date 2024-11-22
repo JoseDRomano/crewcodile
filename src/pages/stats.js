@@ -154,109 +154,154 @@ const Stats = () => {
                 </ResponsiveContainer>
               </Card>
             </Grid>
-
-            {/* Best Sellers Section */}
             <Grid item xs={12}>
-              <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
-                Best Sellers
-              </Typography>
-              <Grid container spacing={4}>
-                {bestSellers.map(({ rank, name, price, image, description, color }, index) => (
-                  <Grid item xs={12} md={4} key={index}>
-                    <Card
-                      sx={{
-                        position: "relative",
-                        height: 360,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        textAlign: "center",
-                        boxShadow: 4,
-                        borderRadius: 3,
-                        overflow: "hidden",
-                        transition: "transform 0.3s, box-shadow 0.3s",
-                        "&:hover": {
-                          transform: "scale(1.05)",
-                          boxShadow: 6,
-                        },
-                      }}
-                    >
-                      {/* Ranking Badge */}
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          top: -20,
-                          left: "50%",
-                          transform: "translateX(-50%)",
-                          background: color,
-                          color: "white",
-                          width: 60,
-                          height: 60,
-                          borderRadius: "50%",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: 24,
-                          fontWeight: "bold",
-                          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
-                        }}
-                      >
-                        {rank}
-                      </Box>
+  <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+    Best Sellers
+  </Typography>
+  <Grid container spacing={4}>
+    {bestSellers.map(({ rank, name, price, image, description, color }, index) => (
+      <Grid item xs={12} md={4} key={index}>
+        <Card
+          sx={{
+            position: "relative",
+            height: 300,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            boxShadow: 4,
+            borderRadius: 3,
+            overflow: "hidden",
+            transition: "transform 0.3s, box-shadow 0.3s",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: 6,
+            },
+          }}
+        >
+          {/* Medal Badge */}
+          {rank === 1 && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 7,
+                right: 10,
+                background: "gold",
+                color: "white",
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 20,
+                fontWeight: "bold",
+                zIndex: 10, // Ensure the medal appears above the content
+              }}
+            >
+              1
+            </Box>
+          )}
+          {rank === 2 && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 7,
+                right: 10,
+                background: "silver",
+                color: "white",
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 20,
+                fontWeight: "bold",
+                zIndex: 10,
+              }}
+            >
+              2
+            </Box>
+          )}
+          {rank === 3 && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 7,
+                right: 10,
+                background: "#CD7F32", // Bronze color
+                color: "white",
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 20,
+                fontWeight: "bold",
+                zIndex: 10,
+              }}
+            >
+              3
+            </Box>
+          )}
 
-                      {/* Product Image */}
-                      <Box
-                        sx={{
-                          width: "100%",
-                          height: 150,
-                          background: "linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3))",
-                          position: "relative",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <CardMedia
-                          component="img"
-                          image={image}
-                          alt={name}
-                          sx={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            transition: "transform 0.3s",
-                            "&:hover": {
-                              transform: "scale(1.1)",
-                            },
-                          }}
-                        />
-                      </Box>
+          {/* Product Image */}
+          <Box
+            sx={{
+              width: "100%",
+              height: 150,
+              background: "linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3))",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={image}
+              alt={name}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transition: "transform 0.3s",
+                "&:hover": {
+                  transform: "scale(1.1)",
+                },
+              }}
+            />
+          </Box>
 
-                      {/* Product Details */}
-                      <CardContent sx={{ flexGrow: 1, p: 2 }}>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-                          {name}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{ color: "text.secondary", mb: 2, lineHeight: 1.5 }}
-                        >
-                          {description}
-                        </Typography>
-                        <Typography
-                          variant="subtitle2"
-                          sx={{
-                            fontWeight: "bold",
-                            fontSize: 18,
-                            color: "#4caf50",
-                          }}
-                        >
-                          {price}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
+          {/* Product Details */}
+          <CardContent sx={{ flexGrow: 1, p: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+              {name}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", mb: 2, lineHeight: 1.5 }}
+            >
+              {description}
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              sx={{
+                fontWeight: "bold",
+                fontSize: 18,
+                color: "#4caf50",
+              }}
+            >
+              {price}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Grid>
+
+              
           </Grid>
         </Container>
       </Box>
