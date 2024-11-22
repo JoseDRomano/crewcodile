@@ -6,6 +6,7 @@ import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { useDialog } from "../contexts/dialog-context";
 import { AddRestaurantMenuDialog } from "../sections/restaurantMenu/add-dialog";
 import { ConfirmDialog } from "@/sections/restaurantMenu/confirm-dialog";
+import { dark_green } from "../theme/colors";
 
 const RestaurantMenuPage = () => {
     const [menuItems, setMenuItems] = useState([]);
@@ -66,12 +67,15 @@ const RestaurantMenuPage = () => {
                     Restaurant Menu
                 </Typography>
                 <Stack direction="row" spacing={2} sx={{ mb: 4 }}>
-                    <Button variant="contained" color="primary" onClick={handleAddDish}>
+                    <Button variant="contained" onClick={handleAddDish}              
+                        sx={{
+                            backgroundColor: dark_green.main,
+                        }}>
                         Add Dish
                     </Button>
                     <Button
                         variant="contained"
-                        color={isRemoveMode ? "error" : "secondary"}
+                        color={isRemoveMode ? "primary" : "error"}
                         onClick={() => setIsRemoveMode((prev) => !prev)} // Ativa ou desativa o modo de remoção
                     >
                         {isRemoveMode ? "Cancel Remove" : "Remove Dish"}
