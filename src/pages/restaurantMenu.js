@@ -105,6 +105,9 @@ const RestaurantMenuPage = () => {
 
                                 {/* Content */}
                                 <Box sx={{ p: 2 }}>
+                                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                                        {item.category || "No category specified"}
+                                    </Typography>
                                     <Typography variant="h6">{item.name}</Typography>
                                     <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                                         {item.description || "No description available."}
@@ -112,6 +115,9 @@ const RestaurantMenuPage = () => {
                                     <Typography variant="body1" sx={{ mt: 2, fontWeight: "bold" }}>
                                         ${item.price.toFixed(2)}
                                     </Typography>
+                                     
+
+
                                 </Box>
 
                                 {/* Edit Button */}

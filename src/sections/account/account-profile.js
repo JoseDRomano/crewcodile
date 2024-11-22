@@ -3,9 +3,9 @@ import {dark_green} from '../../theme/colors';
 
 const user = {
     avatar: '/assets/avatars/avatar-joaquim-alberto.png',
-    city: 'Ericeira',
+    city: 'Almada',
     country: "Portugal",
-    jobTitle: 'Personal Trainer',
+    jobTitle: 'CEO BBQ Ribs',
     name: 'Joaquim Alberto',
 };
 

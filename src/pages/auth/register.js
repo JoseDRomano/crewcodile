@@ -23,13 +23,13 @@ const Page = () => {
         validationSchema: Yup.object({
             email: Yup
                 .string()
-                .email('O email tem que ser válido')
+                .email('Must be a valid email')
                 .max(255)
-                .required('Email é obrigatório.'),
+                .required('Email is required'),
             name: Yup
                 .string()
                 .max(255)
-                .required('O Nome é obrigatório.'),
+                .required('Name is required'),
             password: Yup
                 .string()
                 .max(255)
@@ -39,15 +39,15 @@ const Page = () => {
             try {
                 //await auth.signUp(values.email, values.name, values.password);
                 dialog.setDialogContent({
-                    title: "Registar-se como Personal Trainer",
+                    title: "Register your company",
                     type: "confirm",
-                    content: "Tem a certeza que quer registar-se como Personal Trainer?",
+                    content: "Are you sure you want to register?",
                     action: async () => {
                         await sleep(250);
                         dialog.setDialogContent({
-                            title: "Registar-se como Personal Trainer",
+                            title: "Register your company",
                             type: "confirm",
-                            content: "Foi submetido um pré-registo para o nosso sistema. Em dentro de poucos minutos irá receber um email com a confirmação e as informações de acesso. Obrigado por se juntar ao CrewCodille",
+                            content: "You have submitted a pre-registration for our system. In a few minutes you will receive an email with confirmation and access information. Thank you for joining CrewCodile",
                             action: async () => {
                                 router.push('/auth/login');
                             },
@@ -67,7 +67,7 @@ const Page = () => {
 
             <Head>
                 <title>
-                    Registar-se como personal trainer | Train With Me
+                    Register as  | CrewCodile
                 </title>
             </Head>
             <ConfirmDialog /> 
@@ -94,13 +94,13 @@ const Page = () => {
                             sx={{mb: 3}}
                         >
                             <Typography variant="h4">
-                                Registar-se como Personal Trainer
+                                Register as a company
                             </Typography>
                             <Typography
                                 color="text.secondary"
                                 variant="body2"
                             >
-                                Já tem conta? Faça o login
+                                Already have an account? Login!
                                 &nbsp;
                                 <Link
                                     component={NextLink}
@@ -108,7 +108,7 @@ const Page = () => {
                                     underline="hover"
                                     variant="subtitle2"
                                 >
-                                    aqui
+                                    here
                                 </Link>
                             </Typography>
                         </Stack>

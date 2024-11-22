@@ -42,7 +42,7 @@ async function sendEmail(name, email) {
     const options = {
         from: "rd.bernardino@campus.fct.unl.pt",
         to: email,
-        subject: "Welcome to CrewCodille",
+        subject: "Welcome to CrewCodile",
         html: `<h1>Hello, ${name}!</h1><p>Your email has been added successfully to the restaurant's Crewcodile.</p>`,
     };
 
