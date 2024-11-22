@@ -36,7 +36,7 @@ const Page = () => {
     return (
         <>
             <Head>
-                <title>Dashboard | CrewCodille</title>
+                <title>Dashboard | CrewCodile</title>
             </Head>
             <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
                 <Container maxWidth="xl">

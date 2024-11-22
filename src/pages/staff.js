@@ -1,4 +1,11 @@
-import { Avatar, Box, Button, Container, Stack, Typography } from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Button,
+    Container,
+    Stack,
+    Typography,
+} from "@mui/material";
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
 import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { useEffect, useState } from "react";
@@ -12,6 +19,7 @@ import NProgress from "nprogress";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { ConfirmDialog } from "@/sections/staff/confirm-dialog"; // Staff-specific Confirm Dialog
 
 const StaffPage = () => {
@@ -72,49 +80,73 @@ const StaffPage = () => {
         });
     };
 
+    const handleViewClick = (id) => () => {
+        router.push(`/staff/${id}`);
+    };
+
     const columns = [
-        { field: "photo", headerName: "Photo", width: 100, renderCell: (params) => <Avatar src={params.value} /> },
+        {
+            field: "view",
+            headerName: "",
+            width: 50,
+            sortable: false,
+            renderCell: (params) => (
+                <VisibilityIcon
+                    sx={{ cursor: "pointer", color: "primary.main" }}
+                    onClick={handleViewClick(params.row.id)}
+                />
+            ),
+        },
+        {
+            field: "photo",
+            headerName: "Photo",
+            width: 100,
+            renderCell: (params) => <Avatar src={params.value} />,
+        },
         { field: "name", headerName: "Name", width: 200 },
         { field: "email", headerName: "Email", width: 200 },
         { field: "role", headerName: "Role", width: 150 },
         { field: "restaurant", headerName: "Restaurant", width: 150 },
-        { field: "createdAt", headerName: "Creation Date", width: 200, renderCell: (params) => formatCreatedDate(params.value) },
+        {
+            field: "createdAt",
+            headerName: "Creation Date",
+            width: 200,
+            renderCell: (params) => formatCreatedDate(params.value),
+        },
         {
             field: "actions",
             type: "actions",
             headerName: "Edit/Remove",
             width: 150,
             cellClassName: "actions",
-            getActions: ({ id }) => {
-                return [
-                    <GridActionsCellItem
-                        key={1}
-                        icon={<EditIcon />}
-                        label="Edit"
-                        className="textPrimary"
-                        onClick={handleEditClick(id)}
-                        color="inherit"
-                    />,
-                    <GridActionsCellItem
-                        key={2}
-                        icon={<DeleteIcon />}
-                        label="Delete"
-                        className="textPrimary"
-                        onClick={handleDeleteClick(id)}
-                        color="inherit"
-                    />,
-                ];
-            },
+            getActions: ({ id }) => [
+                <GridActionsCellItem
+                    key={1}
+                    icon={<EditIcon />}
+                    label="Edit"
+                    className="textPrimary"
+                    onClick={handleEditClick(id)}
+                    color="inherit"
+                />,
+                <GridActionsCellItem
+                    key={2}
+                    icon={<DeleteIcon />}
+                    label="Delete"
+                    className="textPrimary"
+                    onClick={handleDeleteClick(id)}
+                    color="inherit"
+                />,
+            ],
         },
     ];
 
-    const handleRowClick = (params) => {
-        router.push(`/staff/${params.id}`);
-    };
-
     return (
         <>
-            {dialog.getType().type == "confirmstaff" ? <ConfirmDialog /> : <AddUserDialog />}
+            {dialog.getType().type == "confirmstaff" ? (
+                <ConfirmDialog />
+            ) : (
+                <AddUserDialog />
+            )}
 
             <Box
                 sx={{
@@ -148,7 +180,6 @@ const StaffPage = () => {
                 <Container maxWidth="xl">
                     <Stack spacing={3}>
                         <DataGrid
-                            onRowClick={handleRowClick}
                             rows={staff}
                             columns={columns}
                             initialState={{

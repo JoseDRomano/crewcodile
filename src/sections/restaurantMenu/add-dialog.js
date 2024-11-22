@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { useDialog } from "../../contexts/dialog-context";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -27,7 +29,7 @@ export const AddRestaurantMenuDialog = () => {
     },
     validationSchema: Yup.object({
       name: Yup.string().max(255).required("The name is necessary"),
-      category: Yup.string().max(255).required("The category is necessary"),
+      category: Yup.string().required("The category is necessary"),
       price: Yup.number().required("The price is necessary").positive("Price must be positive"),
     }),
     onSubmit: async (values, helpers) => {
@@ -109,16 +111,22 @@ export const AddRestaurantMenuDialog = () => {
               onChange={formik.handleChange}
               value={formik.values.name}
             />
-            <TextField
+            <Select
               error={!!(formik.touched.category && formik.errors.category)}
               fullWidth
-              helperText={formik.touched.category && formik.errors.category}
-              label="Category"
-              name="category"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
               value={formik.values.category}
-            />
+              onChange={(event) => formik.setFieldValue("category", event.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="" disabled>
+                Select a category
+              </MenuItem>
+              <MenuItem value="Starters">Entrance</MenuItem>
+              <MenuItem value="Main Course">Main Course</MenuItem>
+              <MenuItem value="Dessert">Dessert</MenuItem>
+              <MenuItem value="Drink">Drink</MenuItem>
+            
+            </Select>
             <TextField
               error={!!(formik.touched.description && formik.errors.description)}
               fullWidth
