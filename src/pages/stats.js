@@ -1,8 +1,61 @@
 import React from "react";
 import Head from "next/head";
-import { Box, Container, Grid, Typography, Card, CardContent, CardMedia, Button, Select, MenuItem } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
-import InfoIcon from "@mui/icons-material/Info";
+import GaugeChart from "react-gauge-chart"; // Gauge chart for satisfaction
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
+import StarIcon from "@mui/icons-material/Star";
+
+const revenueData = [
+  { name: "Gross Income", value: 75000 },
+  { name: "Net Income", value: 41000 },
+];
+
+const bestSellers = [
+  {
+    rank: 1,
+    name: "Mom's Lasagna",
+    price: "$17.99+",
+    image: "https://minervafoods.com/wp-content/uploads/2022/12/Lasanha-bolonhesa-com-legumes-cenoura-abobrinha-espinafre-HOR-mod-scaled-1.webp",
+    description: "Our famous 5-layered homemade lasagna!",
+    color: "#FFD700", // Gold
+  },
+  {
+    rank: 2,
+    name: "Manicotti",
+    price: "$14.99",
+    image: "https://via.placeholder.com/300",
+    description: "Manicotti baked in your favorite sauce.",
+    color: "#C0C0C0", // Silver
+  },
+  {
+    rank: 3,
+    name: "Chicken Parmigiana",
+    price: "$16.50",
+    image: "https://via.placeholder.com/300",
+    description: "Crispy chicken with marinara sauce.",
+    color: "#CD7F32", // Bronze
+  },
+];
 
 const Stats = () => {
   return (
@@ -18,7 +71,14 @@ const Stats = () => {
           <Grid container spacing={4}>
             {/* Header with Monthly/Yearly Filter */}
             <Grid item xs={12}>
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 2,
+                }}
+              >
                 <Box>
                   <Button variant="contained" color="primary" sx={{ mr: 1 }}>
                     Monthly
@@ -26,7 +86,10 @@ const Stats = () => {
                   <Button variant="outlined">Yearly</Button>
                 </Box>
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: "medium", mr: 2, display: "inline-block" }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ fontWeight: "medium", mr: 2, display: "inline-block" }}
+                  >
                     Month Filter:
                   </Typography>
                   <Select defaultValue="January" sx={{ minWidth: 120 }}>
@@ -44,45 +107,51 @@ const Stats = () => {
                 <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
                   Customer Satisfaction
                 </Typography>
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: "150px",
-                    height: "75px",
-                    margin: "0 auto",
-                    borderTopLeftRadius: "75px",
-                    borderTopRightRadius: "75px",
-                    background: "linear-gradient(to right, red, orange, green)",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      width: "2px",
-                      height: "75px",
-                      backgroundColor: "black",
-                      left: "50%",
-                      bottom: "0",
-                      transformOrigin: "bottom",
-                      transform: "rotate(25deg)", // Adjust angle based on satisfaction score
-                    }}
-                  />
-                </Box>
+                <GaugeChart
+                  id="satisfaction-gauge"
+                  nrOfLevels={20}
+                  colors={["#ff4d4d", "#ffa500", "#4caf50"]}
+                  arcWidth={0.3}
+                  percent={0.82} // Satisfaction score as a percentage (82%)
+                  textColor="#000000"
+                />
               </Card>
             </Grid>
 
-            {/* Revenue Section */}
+            {/* Revenue Section (Enhanced Bar Chart) */}
             <Grid item xs={12} md={6}>
               <Card sx={{ textAlign: "center", p: 2 }}>
                 <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
-                  Revenue (Profit)
+                  Revenue Comparison
                 </Typography>
-                <Typography variant="body1" sx={{ mb: 1 }}>
-                  Gross: <Typography component="span" fontWeight="bold">$75,000</Typography>
-                </Typography>
-                <Typography variant="body1">
-                  Net: <Typography component="span" fontWeight="bold">$41,000</Typography>
-                </Typography>
+                <ResponsiveContainer width="100%" height={250}>
+                  <BarChart data={revenueData} barSize={50}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="name"
+                      tick={{ fontSize: 12, fill: "#555555" }}
+                    />
+                    <YAxis tick={{ fontSize: 12, fill: "#555555" }} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#f5f5f5",
+                        borderRadius: "8px",
+                      }}
+                      itemStyle={{ color: "#333" }}
+                    />
+                    <Bar
+                      dataKey="value"
+                      fill="url(#barGradient)"
+                      radius={[10, 10, 0, 0]}
+                    />
+                    <defs>
+                      <linearGradient id="barGradient" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stopColor="#4caf50" />
+                        <stop offset="100%" stopColor="#81c784" />
+                      </linearGradient>
+                    </defs>
+                  </BarChart>
+                </ResponsiveContainer>
               </Card>
             </Grid>
 
@@ -92,51 +161,100 @@ const Stats = () => {
                 Best Sellers
               </Typography>
               <Grid container spacing={4}>
-                {/* Best Seller Item 1 */}
-                <Grid item xs={12} md={6}>
-                  <Card sx={{ display: "flex" }}>
-                    <CardMedia
-                      component="img"
-                      sx={{ width: 150 }}
-                      image="https://via.placeholder.com/150"
-                      alt="Mom's Lasagna"
-                    />
-                    <CardContent>
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        Mom's Lasagna
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        A large savory slice of our 5-layered homemade lasagna baked in our bolognese sauce, topped with mozzarella.
-                      </Typography>
-                      <Typography variant="subtitle2" fontWeight="bold">
-                        $17.99+
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
+                {bestSellers.map(({ rank, name, price, image, description, color }, index) => (
+                  <Grid item xs={12} md={4} key={index}>
+                    <Card
+                      sx={{
+                        position: "relative",
+                        height: 360,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        textAlign: "center",
+                        boxShadow: 4,
+                        borderRadius: 3,
+                        overflow: "hidden",
+                        transition: "transform 0.3s, box-shadow 0.3s",
+                        "&:hover": {
+                          transform: "scale(1.05)",
+                          boxShadow: 6,
+                        },
+                      }}
+                    >
+                      {/* Ranking Badge */}
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: -20,
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          background: color,
+                          color: "white",
+                          width: 60,
+                          height: 60,
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: 24,
+                          fontWeight: "bold",
+                          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
+                        }}
+                      >
+                        {rank}
+                      </Box>
 
-                {/* Best Seller Item 2 */}
-                <Grid item xs={12} md={6}>
-                  <Card sx={{ display: "flex" }}>
-                    <CardMedia
-                      component="img"
-                      sx={{ width: 150 }}
-                      image="https://via.placeholder.com/150"
-                      alt="Manicotti"
-                    />
-                    <CardContent>
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        Manicotti
-                      </Typography>
-                      <Typography variant="body2" sx={{ mb: 1 }}>
-                        2 large pasta tubes filled with ricotta cheese filling, baked in your favorite homemade pasta sauce.
-                      </Typography>
-                      <Typography variant="subtitle2" fontWeight="bold">
-                        $14.99
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
+                      {/* Product Image */}
+                      <Box
+                        sx={{
+                          width: "100%",
+                          height: 150,
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3))",
+                          position: "relative",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <CardMedia
+                          component="img"
+                          image={image}
+                          alt={name}
+                          sx={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            transition: "transform 0.3s",
+                            "&:hover": {
+                              transform: "scale(1.1)",
+                            },
+                          }}
+                        />
+                      </Box>
+
+                      {/* Product Details */}
+                      <CardContent sx={{ flexGrow: 1, p: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                          {name}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "text.secondary", mb: 2, lineHeight: 1.5 }}
+                        >
+                          {description}
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{
+                            fontWeight: "bold",
+                            fontSize: 18,
+                            color: "#4caf50",
+                          }}
+                        >
+                          {price}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
               </Grid>
             </Grid>
           </Grid>
@@ -149,5 +267,3 @@ const Stats = () => {
 Stats.getLayout = (stats) => <DashboardLayout>{stats}</DashboardLayout>;
 
 export default Stats;
-
-
